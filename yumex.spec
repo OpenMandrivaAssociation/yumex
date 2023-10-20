@@ -16,6 +16,7 @@ BuildArch: noarch
 BuildRequires: pkgconfig(python)
 BuildRequires: meson
 BuildRequires: pkgconfig(blueprint-compiler)
+BuildRequires: python-blueprint-compiler
 BuildRequires: gettext
 BuildRequires: desktop-file-utils
 BuildRequires: appstream-util
