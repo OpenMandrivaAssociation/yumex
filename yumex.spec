@@ -5,48 +5,45 @@
 
 Name:     %{app_name}
 Version:  4.99.4
-Release:  1%{?dist}
+Release:  1
 Summary:  Yum Extender graphical package management tool
-
 Group:    Applications/System
 License:  GPLv3+
 URL:      http://yumex.dk
 Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
 
 BuildArch: noarch
-BuildRequires: python3-devel
+BuildRequires: pkgconfig(python)
 BuildRequires: meson
-BuildRequires: blueprint-compiler >= 0.4.0
+BuildRequires: blueprint-compiler
 BuildRequires: gettext
 BuildRequires: desktop-file-utils
-BuildRequires: libappstream-glib
+BuildRequires: appstream-util
 BuildRequires: pkgconfig(glib-2.0)
 BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(libadwaita-1)
 BuildRequires: pkgconfig(pygobject-3.0)
 
 
-Requires: python3-gobject
-Requires: libadwaita
+Requires: python-gobject3
+Requires: libadwaita-common
 Requires: gtk4
-Requires: flatpak-libs
+Requires: flatpak
 
 # dnf4 requirements
 %if "%{dnf_backend}" == "DNF4"
-Requires: python3-dnfdaemon
-Requires: python3-dnf
+Requires: python-dnfdaemon
+Requires: python-dnf
 %endif
 
 # dnf5 requirements
 %if "%{dnf_backend}" == "DNF5"
-Requires: python3-libdnf5
+Requires: python3dist(libdnf5)
 Requires: dnf5daemon-server
-Requires: python3-dasbus
+Requires: python3dist(dasbus)
 %endif
 
 Obsoletes: yumex-dnf <= 4.5.1
-
-
 
 %description
 Graphical package tool for maintain packages on the system
