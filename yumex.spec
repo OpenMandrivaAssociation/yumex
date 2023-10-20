@@ -15,7 +15,7 @@ Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version
 BuildArch: noarch
 BuildRequires: pkgconfig(python)
 BuildRequires: meson
-BuildRequires: blueprint-compiler
+BuildRequires: pkgconfig(blueprint-compiler)
 BuildRequires: gettext
 BuildRequires: desktop-file-utils
 BuildRequires: appstream-util
