@@ -25,6 +25,7 @@ BuildRequires: pkgconfig(gtk4)
 BuildRequires: pkgconfig(libadwaita-1)
 BuildRequires: pkgconfig(pygobject-3.0)
 BuildRequires: python-gobject3
+BuildRequires: python3dist(pygobject)
 BuildRequires: pkgconfig(gobject-introspection-1.0)
 
 
