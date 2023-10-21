@@ -3,16 +3,19 @@
 %global dnf_backend DNF4
 %global app_name yumex
 
+%define fir 20230926
+
 Name:     %{app_name}
 Version:  4.99.4
-Release:  2
+Release:  0.%{git}.0
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
 URL:      http://yumex.dk
-Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
-Patch0:   https://patch-diff.githubusercontent.com/raw/timlau/yumex-ng/pull/41.patch
-Patch1:   https://github.com/timlau/yumex-ng/commit/16b8221720eba0ea44a93a074129d0f60fdcf21b.patch
+Source0:  https://github.com/timlau/yumex-ng/archive/refs/heads/%{name}-main.tar.gz
+#Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+#Patch0:   https://patch-diff.githubusercontent.com/raw/timlau/yumex-ng/pull/41.patch
+#Patch1:   https://github.com/timlau/yumex-ng/commit/16b8221720eba0ea44a93a074129d0f60fdcf21b.patch
 
 BuildArch: noarch
 BuildRequires: pkgconfig(python)
@@ -56,7 +59,7 @@ Graphical package tool for maintain packages on the system
 
 
 %prep
-%autosetup -p1
+%autosetup -n %{name}-main -p1
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
