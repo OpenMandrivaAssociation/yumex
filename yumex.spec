@@ -3,7 +3,7 @@
 %global dnf_backend DNF4
 %global app_name yumex
 
-%define fir 20230926
+%define git 20230926
 
 Name:     %{app_name}
 Version:  4.99.4
