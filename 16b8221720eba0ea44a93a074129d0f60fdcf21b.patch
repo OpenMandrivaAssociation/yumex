@@ -1,0 +1,84 @@
+From 16b8221720eba0ea44a93a074129d0f60fdcf21b Mon Sep 17 00:00:00 2001
+From: Tim Lauridsen <tim.lauridsen@gmail.com>
+Date: Sat, 24 Jun 2023 10:04:15 +0200
+Subject: [PATCH] always reset remote selections
+
+* If there is no available remotes for a location, it shows the one from previous selection (Possible dnf5  api  change #37
+* don't show disabled remotes in selection
+---
+ yumex/backend/flatpak/backend.py | 32 ++++++++++++++++++--------------
+ yumex/ui/flatpak_installer.py    |  4 ++--
+ 2 files changed, 20 insertions(+), 16 deletions(-)
+
+diff --git a/yumex/backend/flatpak/backend.py b/yumex/backend/flatpak/backend.py
+index 913eb19..de92f3a 100644
+--- a/yumex/backend/flatpak/backend.py
++++ b/yumex/backend/flatpak/backend.py
+@@ -39,12 +39,16 @@ def __init__(self, win: MainWindow):
+             [ref.get_name() for ref in self.system.list_installed_refs()]
+         )
+ 
+-    def find(self, source: str, key: str, location: FlatpakLocation) -> list[str]:
+-        """find an available id containing a key"""
++    def get_installation(self, location: FlatpakLocation):
+         if location == FlatpakLocation.SYSTEM:
+-            refs = self.system.list_remote_refs_sync(source)
++            return self.system
+         else:
+-            refs = self.user.list_remote_refs_sync(source)
++            return self.user
++
++    def find(self, source: str, key: str, location: FlatpakLocation) -> list[str]:
++        """find an available id containing a key"""
++        installation: Flatpak.Installation = self.get_installation(location)
++        refs = installation.list_remote_refs_sync(source)
+         key = key.lower()
+         found = []
+         for ref in refs:
+@@ -77,16 +81,16 @@ def get_icon_path(self, remote_name: str) -> str | None:
+ 
+     def get_remotes(self, location: FlatpakLocation) -> list[str]:
+         """get a list of active flatpak remote names"""
+-        if location is FlatpakLocation.SYSTEM:
+-            remotes = sorted(
+-                [remote.get_name() for remote in self.system.list_remotes()]
+-            )
+-            log(f"FLATPAK : system remotes: {remotes}")
+-            return remotes
+-        else:
+-            remotes = sorted([remote.get_name() for remote in self.user.list_remotes()])
+-            log(f"FLATPAK : user remotes: {remotes}")
+-            return remotes
++        installation: Flatpak.Installation = self.get_installation(location)
++        remotes = sorted(
++            [
++                remote.get_name()
++                for remote in installation.list_remotes()
++                if not remote.get_disabled()
++            ]
++        )
++        log(f"FLATPAK : {location   } remotes: {remotes}")
++        return remotes
+ 
+     def get_arch(self) -> str:
+         """get the default arch"""
+diff --git a/yumex/ui/flatpak_installer.py b/yumex/ui/flatpak_installer.py
+index 706929f..e2eec2c 100644
+--- a/yumex/ui/flatpak_installer.py
++++ b/yumex/ui/flatpak_installer.py
+@@ -110,13 +110,13 @@ def on_location_selected(self, widget, data):
+         """hander for location is changed"""
+         location = FlatpakLocation(self.location.get_selected_item().get_string())
+         remotes = self.backend.get_remotes(location=location)
++        model = Gtk.StringList.new()
+         if remotes:
+-            model = Gtk.StringList.new()
+             for remote in remotes:
+                 model.append(remote)
+-            self.remote.set_model(model)
+         else:
+             self._clear()
++        self.remote.set_model(model)
+ 
+     def _set_icon(self, id: str, remote_name: str):
+         """set the flatpak icon in the ui of current found flatpak"""
