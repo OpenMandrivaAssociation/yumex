@@ -11,6 +11,7 @@ Group:    Applications/System
 License:  GPLv3+
 URL:      http://yumex.dk
 Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+Patch0:   https://patch-diff.githubusercontent.com/raw/timlau/yumex-ng/pull/41.patch
 
 BuildArch: noarch
 BuildRequires: pkgconfig(python)
@@ -54,7 +55,7 @@ Graphical package tool for maintain packages on the system
 
 
 %prep
-%setup -q
+%autosetup -p1
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
