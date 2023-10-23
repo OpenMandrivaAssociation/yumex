@@ -5,7 +5,7 @@
 
 Name:     %{app_name}
 Version:  4.99.4
-Release:  1
+Release:  2
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
@@ -32,6 +32,7 @@ BuildRequires: pkgconfig(gobject-introspection-1.0)
 
 
 Requires: python-gobject3
+Requires: python-gi
 Requires: libadwaita-common
 Requires: gtk4
 Requires: flatpak
