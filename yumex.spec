@@ -55,7 +55,7 @@ Obsoletes: yumex-dnf <= 4.5.1
 Graphical package tool for maintain packages on the system
 
 %prep
-%autosetup -p1
+%autosetup -n yumex-ng-%{version} -p1
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
