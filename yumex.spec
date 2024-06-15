@@ -13,9 +13,9 @@ URL:      http://yumex.dk
 Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
 
 BuildArch: noarch
-BuildRequires: appstream = 0.16.4-1
-BuildRequires: lib64appstream4 = 0.16.4-1
-BuildRequires: pkgconfig(appstream) = 0.16.4-1
+BuildRequires: appstream = 1.0.3
+BuildRequires: lib64appstream4 = 1.0.3
+BuildRequires: pkgconfig(appstream) = 1.0.3
 BuildRequires: appstream-util
 BuildRequires: pkgconfig(python)
 BuildRequires: meson
