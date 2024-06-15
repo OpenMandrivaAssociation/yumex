@@ -14,7 +14,7 @@ Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version
 
 BuildArch: noarch
 BuildRequires: appstream = 1.0.3
-BuildRequires: lib64appstream4 = 1.0.3
+BuildRequires: lib64appstream5 = 1.0.3
 BuildRequires: pkgconfig(appstream) = 1.0.3
 BuildRequires: appstream-util
 BuildRequires: pkgconfig(python)
