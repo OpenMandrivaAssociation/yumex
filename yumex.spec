@@ -4,17 +4,19 @@
 %global app_name yumex
 
 Name:     %{app_name}
-Version:  4.99.4
-Release:  2
+Version:  5.0.0
+Release:  1
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
 URL:      http://yumex.dk
 Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
-Patch0:   https://patch-diff.githubusercontent.com/raw/timlau/yumex-ng/pull/41.patch
-Patch1:   https://github.com/timlau/yumex-ng/commit/16b8221720eba0ea44a93a074129d0f60fdcf21b.patch
 
 BuildArch: noarch
+BuildRequires: appstream >= 1.0.3
+BuildRequires: lib64appstream5 >= 1.0.3
+BuildRequires: pkgconfig(appstream) >= 1.0.3
+BuildRequires: appstream-util
 BuildRequires: pkgconfig(python)
 BuildRequires: meson
 BuildRequires: pkgconfig(blueprint-compiler)
