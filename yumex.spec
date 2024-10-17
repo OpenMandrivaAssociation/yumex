@@ -9,7 +9,7 @@ Release:  2
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
-URL:      http://yumex.dk
+URL:      https://yumex.dk
 Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
 
 BuildArch: noarch
