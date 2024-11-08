@@ -98,3 +98,9 @@ update-desktop-database %{_datadir}/applications &> /dev/null || :
 %{_datadir}/icons/hicolor/
 %{_metainfodir}/%{app_id}.metainfo.xml
 %{_datadir}/glib-2.0/schemas/%{app_id}.gschema.xml
+
+# considering create "updater" subpackage in future
+%{_bindir}/yumex_updater_systray
+%{_prefix}/lib/systemd/user-preset/50-yumex-updater-systray.preset
+%{_prefix}/lib/systemd/user/yumex-updater-systray.service
+%{_datadir}/applications/dk.yumex.Yumex-flatpakref.desktop
