@@ -4,8 +4,8 @@
 %global app_name yumex
 
 Name:     %{app_name}
-Version:  5.0.0
-Release:  2
+Version:  5.0.3
+Release:  1
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
