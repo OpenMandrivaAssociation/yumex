@@ -35,6 +35,7 @@ BuildRequires: pkgconfig(gobject-introspection-1.0)
 
 Requires: python-gobject3
 Requires: python-gi
+Requires: python-dasbus
 Requires: libadwaita-common
 Requires: gtk4
 Requires: flatpak
