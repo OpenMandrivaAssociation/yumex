@@ -5,7 +5,7 @@
 
 Name:     %{app_name}
 Version:  5.0.0
-Release:  2
+Release:  3
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
@@ -41,6 +41,7 @@ Requires: flatpak
 
 # dnf4 requirements
 %if "%{dnf_backend}" == "DNF4"
+Requires: dnfdaemon
 Requires: python-dnfdaemon
 Requires: python-dnf
 %endif
