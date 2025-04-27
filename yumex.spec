@@ -1,10 +1,10 @@
 %global app_id dk.yumex.Yumex
 %global app_build release
-%global dnf_backend DNF4
+%global dnf_backend DNF5
 %global app_name yumex
 
 Name:     %{app_name}
-Version:  5.0.3
+Version:  5.2.0
 Release:  1
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
