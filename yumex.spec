@@ -97,6 +97,7 @@ update-desktop-database %{_datadir}/applications &> /dev/null || :
 %{_bindir}/%{app_name}
 %{python3_sitelib}/%{app_name}/
 %{_datadir}/applications/%{app_id}.desktop
+%{_datadir}/applications/dk.yumex.Yumex-rpm.desktop
 %{_datadir}/icons/hicolor/
 %{_metainfodir}/%{app_id}.metainfo.xml
 %{_datadir}/glib-2.0/schemas/%{app_id}.gschema.xml
