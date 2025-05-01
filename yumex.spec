@@ -5,12 +5,13 @@
 
 Name:     %{app_name}
 Version:  5.2.0
-Release:  1
+Release:  1.20250430.0
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
 URL:      https://yumex.dk
-Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+#Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source0:    yumex-ng-main.tar.gz
 
 BuildArch: noarch
 BuildRequires: appstream >= 1.0.3
@@ -60,7 +61,7 @@ Graphical package tool for maintain packages on the system
 
 
 %prep
-%autosetup -p1
+%autosetup -n yumex-ng-main -p1
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
