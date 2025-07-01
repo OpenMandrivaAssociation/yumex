@@ -1,16 +1,17 @@
 %global app_id dk.yumex.Yumex
 %global app_build release
-%global dnf_backend DNF4
+%global dnf_backend DNF5
 %global app_name yumex
 
 Name:     %{app_name}
-Version:  5.0.0
-Release:  3
+Version:  5.2.0
+Release:  1.20250530.1
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
 URL:      https://yumex.dk
-Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+#Source0:  https://github.com/timlau/yumex-ng/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+Source0:    yumex-ng-main.tar.gz
 
 BuildArch: noarch
 BuildRequires: appstream >= 1.0.3
@@ -35,6 +36,7 @@ BuildRequires: pkgconfig(gobject-introspection-1.0)
 
 Requires: python-gobject3
 Requires: python-gi
+Requires: python-dasbus
 Requires: libadwaita-common
 Requires: gtk4
 Requires: flatpak
@@ -60,7 +62,7 @@ Graphical package tool for maintain packages on the system
 
 
 %prep
-%autosetup -p1
+%autosetup -n yumex-ng-main -p1
 
 %check
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
@@ -96,6 +98,13 @@ update-desktop-database %{_datadir}/applications &> /dev/null || :
 %{_bindir}/%{app_name}
 %{python3_sitelib}/%{app_name}/
 %{_datadir}/applications/%{app_id}.desktop
+%{_datadir}/applications/dk.yumex.Yumex-rpm.desktop
 %{_datadir}/icons/hicolor/
 %{_metainfodir}/%{app_id}.metainfo.xml
 %{_datadir}/glib-2.0/schemas/%{app_id}.gschema.xml
+
+# considering create "updater" subpackage in future
+%{_bindir}/yumex_updater
+%{_prefix}/lib/systemd/user-preset/50-yumex-updater.preset
+%{_prefix}/lib/systemd/user/yumex-updater.service
+%{_datadir}/applications/dk.yumex.Yumex-flatpakref.desktop
