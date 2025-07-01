@@ -43,6 +43,7 @@ Requires: flatpak
 
 # dnf4 requirements
 %if "%{dnf_backend}" == "DNF4"
+Requires: dnfdaemon
 Requires: python-dnfdaemon
 Requires: python-dnf
 %endif
