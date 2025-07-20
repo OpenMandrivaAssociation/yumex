@@ -5,7 +5,7 @@
 
 Name:     %{app_name}
 Version:  5.2.0
-Release:  1.20250530.1
+Release:  1.20250718.1
 Summary:  Yum Extender graphical package management tool
 Group:    Applications/System
 License:  GPLv3+
